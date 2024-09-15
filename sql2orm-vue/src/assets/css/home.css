@@ -1,0 +1,44 @@
+.header {
+    height: 50px;
+    width: 100%;
+    background-color: #809680
+}
+
+.main-header {
+    color: gray;
+    padding: 20px;
+    /* width: 100%; */
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-container-left {
+    width: 50%;
+    height: 400px;
+    background: coral;
+}
+
+.main-container-right {
+    float: right;
+    width: 50%;
+    height: 400px;
+    background: cornflowerblue;
+    padding-right: 4px;
+}
+
+
+.textarea {
+    height: 400px;
+    resize: none;
+    width: 100%;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 70px;
+    color: gray;
+}
