@@ -42,15 +42,15 @@
           </div>
 
           <div class="main-container-right">
-            <div style="position: relative">
-              <pre
-                class="code-output"
-              ><code v-text="outStruct || '等待生成 Go struct...'"></code></pre>
+            <!-- 模板部分 -->
+            <div class="output-wrapper">
+              <pre class="code-output" v-text="displayedOutput"></pre>
+
               <el-button
                 v-if="outStruct && !outStruct.includes('错误')"
                 size="small"
                 type="primary"
-                style="position: absolute; top: 10px; right: 10px; z-index: 10"
+                class="copy-btn"
                 @click="copyCode"
                 >复制代码</el-button
               >
@@ -60,7 +60,7 @@
       </el-main>
 
       <!-- footer -->
-      <el-footer class="footer"> 浙ICP备2021035698号-2 </el-footer>
+      <el-footer class="footer"> ©2020 mazezen mazezen24@gmail.com </el-footer>
     </el-container>
   </div>
 </template>
@@ -71,6 +71,7 @@ import "../assets/css/home.css";
 import { onMounted, ref } from "vue";
 import { ElMessage } from "element-plus";
 import { watch } from "vue";
+import { computed } from "vue";
 
 const sqlInput = ref("");
 const outStruct = ref("");
@@ -132,11 +133,10 @@ const convertSQL = async () => {
     return;
   }
 
-  const res = await axios.post("http://127.0.0.1:7892/gen", {
+  const res = await axios.post("/gen", {
     sql: sqlInput.value,
     typ: radio.value,
   });
-  console.log(res.data.struct);
   outStruct.value = res.data.struct;
 };
 
@@ -152,6 +152,13 @@ watch(
   },
   { immediate: false }
 );
+
+// script 部分
+const displayedOutput = computed(() => {
+  if (!outStruct.value) return "等待生成 Go struct...";
+  // 保险起见再 trim 一次（防御性编程）
+  return outStruct.value.trim();
+});
 </script>
 
 

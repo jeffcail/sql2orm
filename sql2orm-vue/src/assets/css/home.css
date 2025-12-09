@@ -1,82 +1,256 @@
-.header {
-  height: 50px;
-  width: 100%;
-  background-color: #809680;
-}
+/* home.css - 深空霓虹科技风终极版 */
 
-.main-header {
-  color: gray;
-  padding: 20px 20px 10px;
-  line-height: 1.6;
-}
-
-.main-container-header {
-  margin: 20px 0 10px;
-  text-align: center;
-}
-
-/* 核心修复：用 flex 正确布局左右两栏 */
-.main-container {
-  width: 100%;
-  display: flex;
-  gap: 12px; /* 两栏间距 */
-  padding: 0 12px;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* 左右两栏都用 flex 项，高度自适应 */
+body,
+.common-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1f2e 100%);
+  color: #e6edf3;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+/* 整体容器 */
+.el-container {
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Header 和 Footer */
+.el-header,
+.el-footer {
+  background: transparent;
+  color: #8b949e;
+  font-size: 13px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.el-footer {
+  margin-top: 20px;
+  opacity: 0.7;
+}
+
+/* 主标题区 */
+.main-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+}
+
+.main-header .title {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #58a6ff, #8b5cf6, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.main-header p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #8b949e;
+  max-width: 800px;
+  margin: 8px auto;
+}
+
+/* Radio 切换按钮美化 */
+.main-container-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.el-radio-group {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: inline-block;
+}
+
+.el-radio {
+  color: #8b949e;
+}
+
+.el-radio.is-checked {
+  color: #58a6ff;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  background: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.el-radio__inner:hover {
+  border-color: #58a6ff;
+}
+
+/* 左右双栏容器 */
+.main-container {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 280px);
+  min-height: 500px;
+}
+
 .main-container-left,
 .main-container-right {
-  flex: 1; /* 平均分配宽度 */
-  min-width: 0; /* 防止 flex 项溢出 */
+  flex: 1;
+  background: rgba(13, 17, 23, 0.75);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(88, 166, 255, 0.15);
+  backdrop-filter: blur(12px);
+  position: relative;
 }
 
-/* 左边输入框 */
-.main-container-left .textarea {
+/* 输入框 */
+.textarea {
   width: 100%;
-  height: 480px;
-  resize: none;
-  padding: 12px;
-  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
-  font-size: 14px;
-  line-height: 1.5;
+  height: 100%;
+  padding: 20px;
+  background: transparent;
   border: none;
-  border-radius: 6px;
-  background: #fff8f0;
-  color: #333;
   outline: none;
-  box-sizing: border-box;
+  color: #c9d1d9;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 14.5px;
+  line-height: 1.7;
+  resize: none;
 }
 
-/* 右边代码输出区 */
+.textarea::placeholder {
+  color: #484f58;
+}
+
+/* 输出代码区 */
 .code-output {
-  height: 480px;
+  height: 100%;
+  padding: 20px;
   margin: 0;
-  padding: 16px;
-  background: #1e1e1e;
-  color: #d4d4d4;
-  font-family: "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
-  font-size: 14px;
-  line-height: 1.6;
-  overflow: auto;
-  border-radius: 8px;
+  background: #0d1117;
+  color: #a5d6ff;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 14.5px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  border-radius: 16px;
+}
+
+/* 复制按钮美化 */
+.el-button {
+  background: linear-gradient(90deg, #2383f0, #1b6ee0) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(35, 131, 240, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+.el-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(35, 131, 240, 0.6) !important;
+}
+
+/* 滚动条美化（仅 Webkit 浏览器） */
+.code-output::-webkit-scrollbar,
+.textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-output::-webkit-scrollbar-track,
+.textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-output::-webkit-scrollbar-thumb,
+.textarea::-webkit-scrollbar-thumb {
+  background: rgba(88, 166, 255, 0.3);
+  border-radius: 4px;
+}
+
+.code-output::-webkit-scrollbar-thumb:hover,
+.textarea::-webkit-scrollbar-thumb:hover {
+  background: #58a6ff;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .main-header .title {
+    font-size: 28px;
+  }
+}
+
+/* ================== 修复右侧滚动 + 美化复制按钮位置 ================== */
+.output-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.code-output {
+  height: 100% !important; /* 强制撑满 */
+  padding: 20px;
+  margin: 0;
+  overflow-y: auto; /* 核心：开启垂直滚动 */
+  overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
-  tab-size: 4;
-  border: 1px solid #333;
-  box-sizing: border-box;
+  background: #0d1117;
+  color: #a5d6ff;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 14.5px;
+  line-height: 1.8;
+  border-radius: 16px;
+  /* 让复制按钮不被内容挡住 */
+  padding-top: 50px; /* 为顶部按钮留出空间 */
 }
 
-.code-output code {
-  background: none;
-  padding: 0;
-  color: inherit;
-  font-family: inherit;
+/* 复制按钮固定在右上角 */
+.copy-btn {
+  position: absolute !important;
+  top: 12px;
+  right: 12px;
+  z-index: 99;
+  background: linear-gradient(90deg, #2383f0, #1b6ee0) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(35, 131, 240, 0.4) !important;
 }
 
-.footer {
-  text-align: center;
-  margin-top: 60px;
-  color: #888;
-  font-size: 14px;
+.copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(35, 131, 240, 0.6) !important;
+}
+
+/* 滚动条继续保持之前的霓虹蓝风格 */
+.code-output::-webkit-scrollbar {
+  width: 8px;
+}
+.code-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+.code-output::-webkit-scrollbar-thumb {
+  background: rgba(88, 166, 255, 0.3);
+  border-radius: 4px;
+}
+.code-output::-webkit-scrollbar-thumb:hover {
+  background: #58a6ff;
 }
