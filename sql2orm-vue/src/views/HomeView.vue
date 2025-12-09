@@ -69,6 +69,7 @@
 import axios from "axios";
 import "../assets/css/home.css";
 import { onMounted, ref } from "vue";
+import { ElMessage } from "element-plus";
 import { watch } from "vue";
 
 const sqlInput = ref("");

@@ -1,3 +1,7 @@
 .idea
 .DS_Store
-sql2xorm
+sql2orm
+
+
+sql2orm-vue/dist
+sql2orm-vue/node_modules
