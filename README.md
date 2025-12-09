@@ -13,7 +13,10 @@ License
   </a>
 
 ## 在线预览
+
 <a href="sql2orm.mazezen.com" target="_blank">sql2orm</a>
 
+感谢您动动手指点个 star🌟
 
-感谢您动动手指点个star🌟
+> node = v20.18.0
+> go 1.22.0
