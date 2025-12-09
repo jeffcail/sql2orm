@@ -42,9 +42,19 @@
           </div>
 
           <div class="main-container-right">
-            <textarea class="textarea" id="output2">
-                {{ outStruct }} 
-            </textarea>
+            <div style="position: relative">
+              <pre
+                class="code-output"
+              ><code v-text="outStruct || '等待生成 Go struct...'"></code></pre>
+              <el-button
+                v-if="outStruct && !outStruct.includes('错误')"
+                size="small"
+                type="primary"
+                style="position: absolute; top: 10px; right: 10px; z-index: 10"
+                @click="copyCode"
+                >复制代码</el-button
+              >
+            </div>
           </div>
         </div>
       </el-main>
@@ -59,6 +69,7 @@
 import axios from "axios";
 import "../assets/css/home.css";
 import { onMounted, ref } from "vue";
+import { watch } from "vue";
 
 const sqlInput = ref("");
 const outStruct = ref("");
@@ -94,6 +105,15 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 };
 
+const copyCode = async () => {
+  try {
+    await navigator.clipboard.writeText(outStruct.value);
+    ElMessage.success("已复制到剪贴板！");
+  } catch (err) {
+    ElMessage.error("复制失败");
+  }
+};
+
 // const handleKeydown2 = (e) => {
 //   if (e.key === "a" || (e.ctrlKey && e.metaKey)) {
 //     e.preventDefault();
@@ -115,10 +135,22 @@ const convertSQL = async () => {
     sql: sqlInput.value,
     typ: radio.value,
   });
+  console.log(res.data.struct);
   outStruct.value = res.data.struct;
 };
+
+watch(
+  radio,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      sqlInput.value = ""; // 清空左侧 SQL 输入框
+      outStruct.value = ""; // 清空右侧生成的代码
+      // 可选：给个小提示
+      outStruct.value = "// 已切换框架，请重新粘贴 SQL 生成代码";
+    }
+  },
+  { immediate: false }
+);
 </script>
 
-<style scoped>
-</style>
 

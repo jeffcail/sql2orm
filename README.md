@@ -12,17 +12,8 @@ License
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
   </a>
 
-## website
+## 在线预览
 <a href="sql2orm.mazezen.com" target="_blank">sql2orm</a>
-
-## 预览
-![效果](./images/one.png)
-
-## sql2xorm
-![效果](./images/one2.png)
-
-## sql2gorm
-![效果](./images/one3.png)
 
 
 感谢您动动手指点个star🌟

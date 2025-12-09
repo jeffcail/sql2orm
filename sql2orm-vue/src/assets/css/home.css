@@ -1,44 +1,82 @@
 .header {
-    height: 50px;
-    width: 100%;
-    background-color: #809680
+  height: 50px;
+  width: 100%;
+  background-color: #809680;
 }
 
 .main-header {
-    color: gray;
-    padding: 20px;
-    /* width: 100%; */
+  color: gray;
+  padding: 20px 20px 10px;
+  line-height: 1.6;
 }
 
+.main-container-header {
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+/* 核心修复：用 flex 正确布局左右两栏 */
 .main-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  gap: 12px; /* 两栏间距 */
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
-.main-container-left {
-    width: 50%;
-    height: 400px;
-    background: coral;
-}
-
+/* 左右两栏都用 flex 项，高度自适应 */
+.main-container-left,
 .main-container-right {
-    float: right;
-    width: 50%;
-    height: 400px;
-    background: cornflowerblue;
-    padding-right: 4px;
+  flex: 1; /* 平均分配宽度 */
+  min-width: 0; /* 防止 flex 项溢出 */
 }
 
+/* 左边输入框 */
+.main-container-left .textarea {
+  width: 100%;
+  height: 480px;
+  resize: none;
+  padding: 12px;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border: none;
+  border-radius: 6px;
+  background: #fff8f0;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+}
 
-.textarea {
-    height: 400px;
-    resize: none;
-    width: 100%;
+/* 右边代码输出区 */
+.code-output {
+  height: 480px;
+  margin: 0;
+  padding: 16px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: auto;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 4;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+.code-output code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
 }
 
 .footer {
-    text-align: center;
-    margin-top: 70px;
-    color: gray;
+  text-align: center;
+  margin-top: 60px;
+  color: #888;
+  font-size: 14px;
 }

@@ -4,7 +4,7 @@ FROM alpine
 WORKDIR /www/wwwroot/sql2orm
 
 # 添加可执行文件
-ADD ./sql2orm $WORKDIR
+COPY ./sql2orm .
 
 EXPOSE 7892
 

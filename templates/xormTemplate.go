@@ -1,28 +1,17 @@
 package _templates
 
-const StructTemplateContent = `
-package models
-
-import (
-	"time"
-)
-
-{{- range .Tables }}
-// {{ .Name }} represents a row in the '{{ .TableName }}' table.
-type {{ .Name }} struct {
-{{- $table := . }}
-{{- range .Columns }}
-	{{ .Name | lower }}	{{ .Type }} ` + "`xorm:\"{{ .Tag }}\"`" + ` // {{ .Comment }}
-{{- end }}
-}
-{{- end }}
+const StructXORMTemplateContent = `{{range .Tables}}
+// {{.Name | title}} represents the {{.Name}} table
+type {{.Name | title}} struct {
+{{range .Columns}}	{{.Name | title}} {{.Type}} ` + "`xorm:\"{{.Tag}}\"`" + ` // {{.Comment}}
+{{end}}}
+{{end}}
 `
 
-const TableNameTemplateContent = `
-{{- range .Tables }}
-// TableName sets the insert table name for this struct type
-func (this *{{ .Name }}) TableName() string {
-	return "{{ .TableName }}"
+const XormTableNameTemplateContent = `{{range .Tables}}
+// TableName specifies the table name for xorm
+func (this *{{.Name | title}}) TableName() string {
+	return "{{.Name}}"
 }
-{{- end }}
+{{end}}
 `
